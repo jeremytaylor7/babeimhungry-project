@@ -6,6 +6,6 @@ import Info from './Info.js'
 
 it('Info component should render', () => {
 
-  const wrapper = shallow(<Info />);
-  expect(wrapper).toEqual(1);
+  const wrapper = shallow(<Info info={['choose cuisine']} />);
+  expect(wrapper.find('h2').length).toEqual(1);
 })
