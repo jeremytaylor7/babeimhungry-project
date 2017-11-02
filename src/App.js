@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import Info from './Info.js'
 import Buttons from './Buttons.js'
 import VoteButtons from './VoteButtons.js'
 import SubCuisineButtons from './SubCuisineButtons.js'
 import Restaurant from './Restaurant.js'
 import VoteInfo from './VoteInfo.js'
+import Nav from './Nav.js'
+import List from './List.js'
 import './App.css';
 
 class App extends Component {
@@ -12,7 +15,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      info: ['Choose Cuisine', 'Choose Sub-Cuisine', 'Idea for Her'],
+      info: ['Choose Cuisine', 'Choose Sub-Cuisine', 'Idea for Her', 'Your Picks'],
       cuisine: ['Asian', 'Spanish', 'African', 'American', 'Europe'],
       subCuisine: [['Japanese', 'Chinese', 'Korean', 'Vietnamese', 'Thai'],
       ['Mexican', 'Puerto Rican', 'Honduras', 'El Salvador'],
@@ -56,27 +59,54 @@ class App extends Component {
   handleVoteClick(e) {
     if (e.target.innerText === 'Yes') {
       this.setState({ showVote: false })
+      this.setState({ showSubs: false })
+      this.setState({ voteInfoCurrent: this.state.voteInfo[0] })
       this.setState({ showVoteInfo: true })
     }
     else if (e.target.innerText === 'Maybe') {
+      this.setState({ showSubs: false })
+      this.setState({ voteInfoCurrent: this.state.voteInfo[1] })
       this.setState({ showVoteInfo: true });
     }
   }
+  // handlePicksClick() {
+  //   this.setState({
+  //     showCuisine: false,
+  //     showRestaurant: false,
+  //     showSubs: false,
+  //     showVote: false,
+  //     showVoteInfo: false,
+  //     showList: true
+  //   });
+  // }
+
   render() {
     return (
-      <div className="App">
-        <h1>Hey There!</h1>
-        <Info info={this.state.info} subIndex={this.state.subIndex} />
-        {this.state.showCuisine && <Buttons cuisine={this.state.cuisine} subCuisine={this.state.subCuisine}
-          handleCuisineClick={(e) => { this.handleCuisineClick(e) }} />}
-        {this.state.showRestaurant && <Restaurant title={this.state.currentCuisine} review={4.5} distance={5.7}
-          handleSubClick={(e) => { this.handleSubCuisineClick(e) }} />}
-        {this.state.showVoteInfo && <VoteInfo info={this.state.voteInfo} />}
-        {this.state.showVote && <VoteButtons vote={this.state.vote} handleVoteClick={(e) => { this.handleVoteClick(e) }} />}
-        {this.state.showSubs && <SubCuisineButtons subIndex={this.state.subIndex} subCuisine={this.state.subCuisine}
-          handleSubClick={(e) => { this.handleSubCuisineClick(e) }} />}
-      </div>
-    );
+      <Router>
+        <div className="App">
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/list">My List</Link></li>
+            <li><Link to="/undecided">Undecided</Link></li>
+          </ul>
+          {/* <h1>Hey There!</h1>
+          <Info info={this.state.info} subIndex={this.state.subIndex} />
+          {this.state.showList && <List chosenItems={this.state.chosenItems} />}
+          {this.state.showCuisine && <Buttons cuisine={this.state.cuisine} subCuisine={this.state.subCuisine}
+            handleCuisineClick={(e) => { this.handleCuisineClick(e) }} />}
+          {this.state.showRestaurant && <Restaurant title={this.state.currentCuisine} review={4.5} distance={5.7}
+            handleSubClick={(e) => { this.handleSubCuisineClick(e) }} />}
+          {this.state.showVoteInfo && <VoteInfo info={this.state.voteInfoCurrent} />}
+          {this.state.showVote && <VoteButtons vote={this.state.vote} handleVoteClick={(e) => { this.handleVoteClick(e) }} />}
+          {this.state.showSubs && <SubCuisineButtons subIndex={this.state.subIndex} subCuisine={this.state.subCuisine}
+            handleSubClick={(e) => { this.handleSubCuisineClick(e) }} />}
+        </div> */}
+          <Route exact path="/" component={Home} />
+          <Route exact path="/list" component={List} />
+          <Route exact path="/undecided" component={List}>
+              
+      </Router>
+          );
   }
 }
 
