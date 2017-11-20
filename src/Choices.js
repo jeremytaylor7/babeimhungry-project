@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Buttons(props) {
+export default function Choices(props) {
 
   return (
     <div className="button-container">

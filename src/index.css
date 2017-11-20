@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
+html {
+  font-family: Indie Flower;
+}
+
 body {
   margin: 0;
   padding: 0;

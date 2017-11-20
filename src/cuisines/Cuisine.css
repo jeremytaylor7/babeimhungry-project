@@ -1,12 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
 .cuisine {
-  background-color: green;
+  width: 200px;
   height: 100px;
-  width: 100px;
-  border: 2px solid black;
-  border-radius: 10px;
+  box-shadow: 5px 5px;
+  font-size: 40px;
+  margin-top: 20px;
+  font-family: Indie Flower;
+}
+.info{
+  font-family: Indie Flower;
+  font-size: 50px;
+  font-weight: 20px;
+  font-style: bold;
+  margin-bottom: 20px;
 }
 
 .cuisine > h1 {
+  text-align: center;
+}
+
+.info {
   text-align: center;
 }
 

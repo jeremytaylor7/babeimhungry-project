@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import Info from './Info.js'
-import Buttons from './Buttons.js'
-import VoteButtons from './VoteButtons.js'
-import SubCuisineButtons from './SubCuisineButtons.js'
-import Restaurant from './Restaurant.js'
-import VoteInfo from './VoteInfo.js'
-import Nav from './Nav.js'
-import List from './List.js'
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+  Link
+} from 'react-router-dom';
+import Home from './Home.js';
+import List from './List.js';
+import Cuisines from './Cuisines.js';
+import Suggest from './suggestion/Suggest.js';
 import './App.css';
 
 class App extends Component {
@@ -16,12 +18,12 @@ class App extends Component {
     super(props)
     this.state = {
       info: ['Choose Cuisine', 'Choose Sub-Cuisine', 'Idea for Her', 'Your Picks'],
-      cuisine: ['Asian', 'Spanish', 'African', 'American', 'Europe'],
-      subCuisine: [['Japanese', 'Chinese', 'Korean', 'Vietnamese', 'Thai'],
-      ['Mexican', 'Puerto Rican', 'Honduras', 'El Salvador'],
-      ['Soul-Food', 'Nigerian'],
-      ['BBQ', 'Diner', 'Fine', 'Cafe'],
-      ['Greek', 'Italian', 'Irish', 'French']],
+      cuisine: ['Fast Food', 'Buffet', 'Healthy', 'Sweets', 'Region'],
+      subCuisine: [['Burgers', 'Sandwiches', 'Tacos'],
+      ['Healthy', 'Traditional', 'Asian'],
+      ['Vegan', 'Paleo', 'Smoothies', 'Salad'],
+      ['Ice-Cream', 'Milkshakes', 'Crepes'],
+      ['Japanese', 'Chinese', 'Vietnamese', 'Italian', 'American', 'Mexican']],
       chosenItems: ['French Fries World', 'KFC', 'McDonalds'],
       vote: ['Yes', 'Maybe', 'No'],
       voteInfo: ['Selection has been added to list!',
@@ -40,74 +42,37 @@ class App extends Component {
 
 
   }
-  handleCuisineClick(e) {
-    const subIndex = e.target.value;
-    this.setState({ subIndex: subIndex })
-    this.setState({ showCuisine: false })
-    this.setState({ showSubs: true })
-  }
-
-  handleSubCuisineClick(e) {
-    const foodType = e.target.innerText;
-    console.log(foodType);
-    this.setState({ subIndex: 2 })
-    this.setState({ showRestaurant: true })
-    this.setState({ currentCuisine: foodType })
-    this.setState({ showVote: true })
-  }
-
-  handleVoteClick(e) {
-    if (e.target.innerText === 'Yes') {
-      this.setState({ showVote: false })
-      this.setState({ showSubs: false })
-      this.setState({ voteInfoCurrent: this.state.voteInfo[0] })
-      this.setState({ showVoteInfo: true })
-    }
-    else if (e.target.innerText === 'Maybe') {
-      this.setState({ showSubs: false })
-      this.setState({ voteInfoCurrent: this.state.voteInfo[1] })
-      this.setState({ showVoteInfo: true });
-    }
-  }
-  // handlePicksClick() {
-  //   this.setState({
-  //     showCuisine: false,
-  //     showRestaurant: false,
-  //     showSubs: false,
-  //     showVote: false,
-  //     showVoteInfo: false,
-  //     showList: true
-  //   });
-  // }
 
   render() {
     return (
       <Router>
-        <div className="App">
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/list">My List</Link></li>
-            <li><Link to="/undecided">Undecided</Link></li>
-          </ul>
-          {/* <h1>Hey There!</h1>
-          <Info info={this.state.info} subIndex={this.state.subIndex} />
-          {this.state.showList && <List chosenItems={this.state.chosenItems} />}
-          {this.state.showCuisine && <Buttons cuisine={this.state.cuisine} subCuisine={this.state.subCuisine}
-            handleCuisineClick={(e) => { this.handleCuisineClick(e) }} />}
-          {this.state.showRestaurant && <Restaurant title={this.state.currentCuisine} review={4.5} distance={5.7}
-            handleSubClick={(e) => { this.handleSubCuisineClick(e) }} />}
-          {this.state.showVoteInfo && <VoteInfo info={this.state.voteInfoCurrent} />}
-          {this.state.showVote && <VoteButtons vote={this.state.vote} handleVoteClick={(e) => { this.handleVoteClick(e) }} />}
-          {this.state.showSubs && <SubCuisineButtons subIndex={this.state.subIndex} subCuisine={this.state.subCuisine}
-            handleSubClick={(e) => { this.handleSubCuisineClick(e) }} />}
-        </div> */}
+        <div className="App container">
+          <nav className="navbar navbar-toggleable-sm navbar-inverse bg-inverse text-white">
+            <ul className="navbar-nav">
+              <li className="nav-item"><Link to="/" className="nav-link">Home</Link></li>
+              <li className="nav-item"><Link to="/cuisines" className="nav-link">Cuisines</Link></li>
+              <li className="nav-item"><Link to="/list" className="nav-link">My List</Link></li>
+              <li className="nav-item"><Link to="/undecided" className="nav-link">Undecided</Link></li>
+            </ul>
+          </nav>
           <Route exact path="/" component={Home} />
-          <Route exact path="/list" component={List} />
-          <Route exact path="/undecided" component={List}>
-              
+          <Route exact path="/cuisines/" component={Cuisines} />
+          <Route exact path="/cuisines/:subcuisine" component={Cuisines} />
+          <Route path="/cuisines/:subcuisine/suggest" component={Suggest} />
+
+        </div>
+
       </Router>
-          );
+
+    )
   }
 }
 
 export default App;
+
+
+/*
+-quickstart on react app docs
+-pluralsight react flux 1-6,
+-all the pages with the routing
+*/

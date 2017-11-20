@@ -4,8 +4,9 @@ import './Cuisine.css';
 export default function Cuisine(props) {
 
   return (
-    <div className="cuisine col-4">
-      <h1>{props.cuisine}</h1>
+    <div className="col-3">
+      <button className="btn-secondary cuisine" value={props.value}
+        onClick={(e) => props.onClick(e)} > {props.cuisine}</button>
     </div>
   )
 }
