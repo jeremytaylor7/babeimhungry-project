@@ -17,9 +17,6 @@ export default class Suggest extends Component {
   }
 
   componentDidMount() {
-    const url = `https://api.foursquare.com/v2/venues/search?ll=40.7,-74&client_id=4MCYPSFM4K1Q2JDRYONRSJTVHTVUVX1FS2SMRAX44F4W3JIC
-&client_secret=KE15X4X1S44X3QWX4MVQGXWYCE3U3GH5QK14GFSOBRUGISKZ
-&v=20171120&near=89147&query=tacos`;
     this.setState({ isLoading: true });
     fetch(url)
       .then(response => response.json())
@@ -44,7 +41,7 @@ export default class Suggest extends Component {
   }
 
   render() {
-    if (this.state.isLoading === true) {
+    if (this.state.isLoading) {
       return (
         <h1>Loading...</h1>
       )
