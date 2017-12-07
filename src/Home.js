@@ -8,8 +8,7 @@ export default function (props) {
       <h1 className="logo col-12">Grubinator</h1>
       <p className="about">Can't find a place to eat? Get restaurant
         suggestions based upon what you're hungry for!</p>
-      <h2 className="create-account ">Create Your Account to get started.</h2>
-      <Register />
+      <Register handleLogin={props.handleLogin} />
     </div>
   )
 }

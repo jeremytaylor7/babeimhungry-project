@@ -1,11 +1,11 @@
 import React from 'react';
-
-export default function () {
+import './Register.css'
+import './Home.css';
+export default function (props) {
 
   return (
-    <div className="form">
-      <label for="first-name">First Name</label>
-      <input type="text" class="form-control" id="first-name" placeholder="First Name" />
+    <div className="auth-btn container row">
+      <button className="google-auth" onClick={() => { props.handleLogin() }}>Log in with Google</button>
     </div>
   )
 }

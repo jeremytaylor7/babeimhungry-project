@@ -1,7 +1,12 @@
 .logo {
   text-align: center;
 }
-
+button {
+  margin-left: auto;
+  margin-right: auto;
+  height: 50px;
+  background-color: orange;
+}
 .about, .create-account {
   text-align: center;
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Choices from './Choices.js';
 import Cuisine from './cuisines/Cuisine';
 import './cuisines/Cuisine.css'
+import fire from './fire.js';
 
 export default class Cuisines extends Component {
   constructor(props) {
@@ -28,10 +29,20 @@ export default class Cuisines extends Component {
         title: 'Region',
         subCuisines: ['Japanese', 'Chinese', 'Vietnamese', 'Italian', 'American', 'Mexican']
 
-      }]
-
+      }],
+      zipCodeIndex: 0,
+      zipTrue: false,
+      zipCode: '',
     }
 
+
+  }
+  componentWillMount() {
+    if (this.props.match.params.subcuisine) {
+      this.setState({
+        zipTrue: true
+      })
+    }
   }
 
   createCuisines() {
@@ -52,6 +63,26 @@ export default class Cuisines extends Component {
     })
   }
 
+  handleZipSubmit(e) {
+    let zipFlag = false;
+    console.log(this.state.zipCode.length)
+    if (this.state.zipCode.length === 4) {
+      const zipVal = e.target.value
+      zipFlag = true;
+      const referralDb = fire.database().ref('users/' + this.props.user.uid + '/zipcode');
+      referralDb.set({
+        zipcode: zipVal
+      });
+      console.log('hi')
+
+    }
+    console.log(e.target.value);
+    this.setState({
+      zipCode: e.target.value,
+      zipTrue: zipFlag
+    })
+
+  }
   handleCuisineClick(e) {
     this.props.history.push(`/cuisines/${e.target.value}`);
   }
@@ -64,8 +95,19 @@ export default class Cuisines extends Component {
     const cuisineComponents = this.createCuisines();
     return (
       <div className="row">
-        <h1 className="info col-12">Please Choose a Cuisine</h1>
-        {cuisineComponents}
+        <h1 className="zip col-12">Please Enter Zip Code</h1>
+        <input className="zip-input col-3" placeholder="Please enter zip code"
+          onChange={e => {
+            this.handleZipSubmit(e)
+          }} />
+        {this.state.zipTrue != true ?
+          <h2 className="zip-error col-12">Still waiting for your zip code...</h2>
+          :
+
+          <h1 className="info col-12">Please Choose a Cuisine</h1>
+          && cuisineComponents
+
+        }
       </div>
     )
   }

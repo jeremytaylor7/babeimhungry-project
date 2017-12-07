@@ -4,9 +4,7 @@
 }
 
 .img{
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
+  display: inline-block;
   
 }
 .restaurant-review{
@@ -18,3 +16,12 @@
   display: inline-block;
   text-align: center;
 }
+
+
+.restaurant-component{
+  display: inline-block;
+}
+/* 
+div {
+  display: inline-block;
+} */

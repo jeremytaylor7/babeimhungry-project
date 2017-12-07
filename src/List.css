@@ -1,0 +1,8 @@
+.restaurant-choice, .time {
+  text-align: center;
+  background-color: lightgreen;
+  font-family: Arial;
+  border: 2px solid black;
+  font-weight: bold;
+  margin-top: 20px;
+}

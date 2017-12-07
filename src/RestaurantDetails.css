@@ -1,0 +1,11 @@
+.restaurant-details {
+  display: inline-block;
+}
+/* 
+div {
+  display: inline-block;
+} */
+.restaurant-desc{
+  color: green;
+}
+

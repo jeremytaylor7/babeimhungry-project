@@ -24,4 +24,17 @@
   text-align: center;
 }
 
+.zip-input, .zip, .zip-error {
+  margin-left: auto;
+  text-align: center;
+  margin-right: auto;
+  font-family: Arial;
+  display: block;
+}
+
+.zip-error {
+  font-size: 12px;
+  margin-top: 100px;
+}
+
 

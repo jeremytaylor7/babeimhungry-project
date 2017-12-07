@@ -12,6 +12,8 @@
     "@storybook/addon-links": "^3.2.12"
   },
   "dependencies": {
+    "fetch": "^1.1.0",
+    "firebase": "^4.6.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-router-dom": "^4.2.2"
