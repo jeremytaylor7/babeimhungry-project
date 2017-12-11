@@ -1,20 +1,8 @@
 language: node_js
- node_js: node
- cache:
-   directories:
-     - node_modules
- script:
-   - npm test
- env:
-   - CI=true
-
- before_deploy:
-   - npm install netlify-cli -g
-   - npm run build
-
- deploy:
-   provider: script
-   script: netlify deploy -s $NETLIFY_SITE_ID -t $NETLIFY_ACCESS_TOKEN -p ./build
-   skip_cleanup: true
-   on:
-     branch: master
+node_js: node
+deploy:
+  provider: heroku
+  api_key:
+  app: serene-eyrie-87075
+  on:
+    repo: jeremytaylor7/babeimhungry-project
