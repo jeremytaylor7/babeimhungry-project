@@ -81,8 +81,12 @@ class App extends Component {
   render() {
     return (
       <div className="App container">
-        <nav className="navbar navbar-toggleable-sm navbar-inverse bg-inverse text-white">
-          <ul className="navbar-nav">
+        <nav className="navbar navbar-toggleable-md navbar-inverse bg-inverse navbar-expand-lg text-white">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <ul className="navbar-nav navbar-expand-lg" id="navbarSupportedContent">
             <li className="nav-item"><Link to="/" className="nav-link">Home</Link></li>
             <li className="nav-item"><Link to="/cuisines" className="nav-link">Cuisines</Link></li>
             <li className="nav-item"><Link to="/list" className="nav-link">My List</Link></li>
@@ -90,12 +94,12 @@ class App extends Component {
 
           <ul className="navbar-nav ml-auto">
             {this.state.user ?
-              <li className="nav-item username">{this.state.user.displayName}</li>
+              <li className="username nav-link">{this.state.user.displayName}</li>
               :
               null
             }
             {this.state.user ?
-              <img className="nav-item user-img" src={this.state.user.photoURL} />
+              <img className="nav-link user-img" src={this.state.user.photoURL} />
               :
               null
             }

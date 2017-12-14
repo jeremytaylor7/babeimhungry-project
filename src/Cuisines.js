@@ -96,7 +96,7 @@ export default class Cuisines extends Component {
     return (
       <div className="row">
         <h1 className="zip col-12">Please Enter Zip Code</h1>
-        <input className="zip-input col-3" placeholder="Please enter zip code"
+        <input className="zip-input col-12" placeholder="Please enter zip code"
           onChange={e => {
             this.handleZipSubmit(e)
           }} />
